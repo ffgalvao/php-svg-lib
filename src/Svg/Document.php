@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * @package php-svg-lib
  * @link    http://github.com/PhenX/php-svg-lib
@@ -8,13 +8,14 @@
 
 namespace Svg;
 
+
 use Svg\Surface\SurfaceInterface;
 use Svg\Tag\AbstractTag;
 use Svg\Tag\Anchor;
 use Svg\Tag\Circle;
+use Svg\Tag\ClipPath;
 use Svg\Tag\Ellipse;
 use Svg\Tag\Group;
-use Svg\Tag\ClipPath;
 use Svg\Tag\Image;
 use Svg\Tag\Line;
 use Svg\Tag\LinearGradient;
@@ -23,8 +24,8 @@ use Svg\Tag\Polygon;
 use Svg\Tag\Polyline;
 use Svg\Tag\Rect;
 use Svg\Tag\Stop;
-use Svg\Tag\Text;
 use Svg\Tag\StyleTag;
+use Svg\Tag\Text;
 use Svg\Tag\UseTag;
 
 class Document extends AbstractTag
@@ -40,7 +41,6 @@ class Document extends AbstractTag
     protected $subPathInit;
     protected $pathBBox;
     protected $viewBox;
-    protected $attributes = [];
 
     /** @var resource */
     protected $parser;
@@ -346,7 +346,7 @@ class Document extends AbstractTag
             else {
                 /** @var AbstractTag $top */
                 $top = end($this->stack);
-                if ($top && $top != $tag) {
+                if ($top && $top !== $tag) {
                     $top->children[] = $tag;
                 }
             }
